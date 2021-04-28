@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import splitIntoLines from './split'
+import transformText from './transformText'
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -12,18 +12,18 @@ export function activate(context: vscode.ExtensionContext) {
 			return;
 		}
 
-		const document = editor.document
-		const selection = editor.selection
-		const selectedText = document.getText(selection)
+		const document = editor.document;
+		const selection = editor.selection;
+		const selectedText = document.getText(selection);
 
 		if (!selectedText.trim().length) {
 			return;
 		}
 
-		const newText = splitIntoLines(selectedText);
+		const newText = transformText(selectedText);
 
 		await editor.edit(builder => {
-			builder.replace(selection, newText)
+			builder.replace(selection, newText);
 		});
 
 		await vscode.commands.executeCommand(
@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 			selection,
 		);
 
-	}
+	};
 	let disposable = vscode.commands.registerCommand(COMMAND, commandHandler);
 	context.subscriptions.push(disposable);
 }
