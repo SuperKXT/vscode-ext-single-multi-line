@@ -1,0 +1,60 @@
+{
+	"name": "object-array-formatter",
+	"displayName": "Object & Array Formatter",
+	"description": "Toggle Object & Array Formatting Between Multi-line & Single-line",
+	"version": "0.0.1",
+	"publisher": "SuperKXT",
+	"engines": {
+		"vscode": "^1.35.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.objectArrayFormatter"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.objectArrayFormatter",
+				"title": "Object Array Formatter"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.objectArrayFormatter",
+				"key": "ctrl+alt+s",
+				"mac": "ctrl+cmd+s",
+				"when": "editorTextFocus && !editorReadonly"
+			},
+			{
+				"command": "extension.objectArrayFormatter",
+				"key": "ctrl+alt+x",
+				"mac": "ctrl+cmd+x",
+				"when": "editorTextFocus && !editorReadonly",
+				"args": {
+					"isCommaOnNewLine": true
+				}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^10.12.21",
+		"tslint": "^5.12.1",
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/chenxxzhe/vscode-ext-split-line"
+	}
+}
