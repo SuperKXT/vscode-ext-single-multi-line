@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "split-line" extension will be documented in this file.
+All notable changes to the "single-multi-line" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
