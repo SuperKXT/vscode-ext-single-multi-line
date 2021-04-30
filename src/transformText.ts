@@ -22,8 +22,8 @@ export default (selectedText: string, isCommaOnNewLine?: boolean): string => {
 	}
 
 	// If Already Multi-line, Make Single-line
-	if (isStringMultiLine(string)) {
-		return string.replace(/[\r\n]/g, '');
+	if (newlineRegEx.test(string)) {
+		return string.replace(/[\r\n\t]/g, '');
 	}
 
 	// If Single-line, Make Multi-line
@@ -31,14 +31,14 @@ export default (selectedText: string, isCommaOnNewLine?: boolean): string => {
 	const stringArray = string.split('');
 
 	const addLineBreak =
-		(index: number, isSemiColon: boolean) => {
-			isCommaOnNewLine && !isSemiColon
+		(index: number, isComma: boolean) => {
+			isCommaOnNewLine && isComma
 				? stringArray[index] = '\n' + stringArray[index]
 				: stringArray[index] += '\n';
 		};
 
 	separatorIndexes.forEach(
-		({ index, isSemiColon }) => addLineBreak(index, isSemiColon)
+		({ index, isComma }) => addLineBreak(index, isComma)
 	);
 
 	const returnString = stringArray.join("");
@@ -47,37 +47,8 @@ export default (selectedText: string, isCommaOnNewLine?: boolean): string => {
 
 };
 
-// Returns True If A Line Break Is Found On The String
-const isStringMultiLine = (string: string): boolean => {
-
-	let isInString: boolean = false,
-		currentQuoteMark = '';
-
-	for (let i = 0; i < string.length; i++) {
-
-		const currentCharacter = string[i];
-
-		if (newlineRegEx.test(currentCharacter) && !isInString) {
-			return true;
-		}
-		if (quoteRegEx.test(currentCharacter)) {
-			if (!isInString) {
-				currentQuoteMark = currentCharacter;
-				isInString = true;
-			}
-			else if (currentQuoteMark === currentCharacter) {
-				isInString = false;
-			}
-		}
-
-	}
-
-	return false;
-
-};
-
 // Find All The Indexes Where A Newline Needs To Be Placed.
-const findNewLineIndexes = (string: string): { index: number, isSemiColon: boolean }[] => {
+const findNewLineIndexes = (string: string): { index: number, isComma: boolean }[] => {
 
 	let isInString: boolean = false,
 		currentQuoteMark = '',
@@ -88,15 +59,16 @@ const findNewLineIndexes = (string: string): { index: number, isSemiColon: boole
 		const currentCharacter = string[i]
 			, nextCharacter = string[i + 1];
 
-		const addNewLine =
+		const shouldAddNewLine =
 			startBracketRegEx.test(currentCharacter)
+			|| (endBracketRegEx.test(currentCharacter) && ![',', ';'].includes(nextCharacter))
 			|| endBracketRegEx.test(nextCharacter)
-			|| ([',', ';'].includes(currentCharacter) && !isInString);
+			|| [',', ';'].includes(currentCharacter);
 
-		if (addNewLine) {
+		if (shouldAddNewLine && !isInString) {
 			separatorIndexArray.push({
 				index: i,
-				isSemiColon: currentCharacter === ';'
+				isComma: currentCharacter === ','
 			});
 		}
 		else if (quoteRegEx.test(currentCharacter)) {

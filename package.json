@@ -1,7 +1,7 @@
 {
-	"name": "object-array-formatter",
-	"displayName": "Object & Array Formatter",
-	"description": "Toggle Object & Array Formatting Between Multi-line & Single-line",
+	"name": "single-line-multi-line",
+	"displayName": "Single-line, Multi-line",
+	"description": "Toggle Objects, Arrays, & Assignments Between Single & Multi-line",
 	"version": "0.0.1",
 	"publisher": "SuperKXT",
 	"engines": {
@@ -11,25 +11,28 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.objectArrayFormatter"
+		"onCommand:extension.singleMultiLine"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.objectArrayFormatter",
-				"title": "Object Array Formatter"
+				"command": "extension.singleMultiLine",
+				"title": "Single-line, Multi-line"
 			}
 		],
 		"keybindings": [
 			{
-				"command": "extension.objectArrayFormatter",
+				"command": "extension.singleMultiLine",
 				"key": "ctrl+alt+s",
 				"mac": "ctrl+cmd+s",
-				"when": "editorTextFocus && !editorReadonly"
+				"when": "editorTextFocus && !editorReadonly",
+				"args": {
+					"isCommandOnNewLine": false
+				}
 			},
 			{
-				"command": "extension.objectArrayFormatter",
+				"command": "extension.singleMultiLine",
 				"key": "ctrl+alt+x",
 				"mac": "ctrl+cmd+x",
 				"when": "editorTextFocus && !editorReadonly",
@@ -55,6 +58,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/chenxxzhe/vscode-ext-split-line"
+		"url": "https://github.com/SuperKXT/vscode-ext-single-multi-line.git"
 	}
 }
