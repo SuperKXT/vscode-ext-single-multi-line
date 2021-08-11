@@ -1,5 +1,7 @@
 
-# Single-line, Multi-line
+![Single-line, Multi-line](images/logo-full.svg)
+
+---
 
 Toggles Selected Text Between Single & Multi-lines.
 Meant to convert Arrays, Objects, & Assignments Between Single & Multi-line.
