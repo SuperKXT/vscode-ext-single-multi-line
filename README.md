@@ -1,5 +1,5 @@
 
-![Single-line, Multi-line](images/logo-full.svg)
+![Single-line, Multi-line](images/logo-full.png)
 
 ---
 

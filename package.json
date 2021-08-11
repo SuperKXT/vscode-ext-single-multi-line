@@ -2,7 +2,8 @@
 	"name": "single-line-multi-line",
 	"displayName": "Single-line, Multi-line",
 	"description": "Toggle Objects, Arrays, & Assignments Between Single & Multi-line",
-	"version": "0.0.1",
+	"icon": "images/logo.png",
+	"version": "0.1.1",
 	"publisher": "SuperKXT",
 	"engines": {
 		"vscode": "^1.35.0"

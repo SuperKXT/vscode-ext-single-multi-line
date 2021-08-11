@@ -21,8 +21,9 @@ export function activate(context: vscode.ExtensionContext) {
 					placeHolder: 'Choose The Comma Placement'
 				}
 			) || { label: undefined };
-			console.log(optionSelected);
+
 			isCommaOnNewLine = optionSelected.label === 'commaOnNewLine';
+
 		} else {
 			isCommaOnNewLine = !!args.isCommaOnNewLine;
 		}
